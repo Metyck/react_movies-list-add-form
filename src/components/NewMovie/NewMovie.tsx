@@ -39,7 +39,12 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
     currImdbUrl: string,
     currImdbId: string,
   ): boolean {
-    if (!currTitle || !currImgUrl || !currImdbUrl || !currImdbId) {
+    if (
+      !currTitle.trim() ||
+      !currImgUrl.trim() ||
+      !currImdbUrl.trim() ||
+      !currImdbId.trim()
+    ) {
       return true;
     }
 
