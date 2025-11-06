@@ -1,10 +1,15 @@
 import { Movie } from '../../types/Movie';
 import { TextField } from '../TextField';
 import React, { useState } from 'react';
-export const NewMovie = (onAdd: (movie: Movie) => void) => {
+
+type Props = {
+  onAdd: (movie: Movie) => void;
+};
+
+export const NewMovie: React.FC<Props> = ({ onAdd }) => {
   // Increase the count after successful form submission
   // to reset touched status of all the `Field`s
-  const [count] = useState(0);
+  const [count, setCount] = useState(0);
 
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
@@ -47,6 +52,7 @@ export const NewMovie = (onAdd: (movie: Movie) => void) => {
       key={count}
       onSubmit={ev => {
         submitHelper(ev);
+        setCount(count + 1);
       }}
     >
       <h2 className="title">Add a movie</h2>
